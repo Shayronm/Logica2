@@ -1,0 +1,43 @@
+<canvas width="600" height="400"></canvas>
+
+	<script>
+	
+	var tela = document.querySelector('canvas');
+	var pincel = tela.getContext('2d');
+	pincel.fillStyle = "grey";
+	pincel.fillRect(0,0,600,400);
+
+
+
+	function exibeBolinha(evento)
+	{
+		var x = evento.pageX - tela.offsetLeft;
+		var y = evento.pageY - tela.offsetTop;
+		mudaCor;
+		pincel.beginPath();
+		pincel.arc(x, y, 5, 0, 2 * 3.14);
+		pincel.fill();
+		console.log('Eixo X: ' + x  + '\n' + 'Eixo Y: ' + y);
+		
+	}
+
+	tela.onclick = exibeBolinha;
+
+	
+	
+
+	function mudaCor()
+	{
+	
+		for(var i = 0; i < cores.length; i++)
+		{
+			cores = ['blue','red', 'green', 'black', 'white', 'pink', 'orange', 'darkgreen'];
+			var exibe = pincel.fillStyle = cores[i];
+		}
+		
+		return false;
+		
+	}
+
+	tela.oncontextmenu = mudaCor;
+</script>
