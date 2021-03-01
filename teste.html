@@ -1,0 +1,90 @@
+<meta charset="UTF-8">
+<canvas width="600" height="400"></canvas>
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+
+    var cores = ['blue', 'red', 'black', 'orange', 'darkgreen'];
+    var i = 0;
+    var faz = false;
+    var raio = 0;
+
+    function geraBolinha(evento) 
+    {
+
+        if(faz) 
+        {
+            var x = evento.pageX - tela.offsetLeft;
+            var y = evento.pageY - tela.offsetTop;
+            pincel.fillStyle = cores[i];
+
+            if(evento.shiftKey)
+    		{
+
+		        raio = raio + 5;
+		        console.log(raio);
+		        alert('O Tamanho do Raio é: ' + raio + ' Bolinha Aumentada!');
+    		}
+
+    		if(evento.ctrlKey)
+    		{
+		       	raio = raio - 5;
+		       	console.log(raio);
+		        alert('O Tamanho do Raio é: ' + raio + ' Bolinha Reduzida!');
+    		}
+
+            pincel.beginPath();
+            pincel.arc(x, y, raio, 0, 2 * 3.14);
+            pincel.fill();
+        }
+
+        console.log(x + ',' + y);
+    }
+
+    tela.onmousemove = geraBolinha; 
+
+    function mudaCor()
+    {
+    	if(i < cores.length - 1)
+    	{
+    		i++;
+    	}else
+    	{
+    		i = 0;
+    	}
+
+    	return false;
+    }
+
+    tela.oncontextmenu = mudaCor;
+
+    function habilita() 
+    {
+        faz = true;
+    }
+
+    tela.onmousedown = habilita;
+
+    function desabilita() 
+    {
+        faz = false;
+    }
+
+    tela.onmouseup = desabilita;
+
+    // tela.onmousedown = function()
+    // {
+    // 	desenha = true;
+    // }
+
+    // tela.onmouseup = function()
+    // {
+    // 	desenha = false;
+    // }
+
+</script>
+
+

@@ -1,0 +1,45 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var tela = document.querySelector('canvas');
+	var pincel = tela.getContext('2d');
+	pincel.fillStyle = "grey";
+	pincel.fillRect(0,0,600,400);
+
+
+
+	function exibeBolinha(evento)
+	{
+		var x = evento.pageX - tela.offsetLeft;
+		var y = evento.pageY - tela.offsetTop;
+		pincel.fillStyle = cores[i];
+		pincel.beginPath();
+		pincel.arc(x, y, 5, 0, 2 * 3.14);
+		pincel.fill();
+		console.log('Eixo X: ' + x  + '\n' + 'Eixo Y: ' + y);
+		
+	}
+
+	tela.onclick = exibeBolinha;
+
+	cores = ['blue','red', 'green', 'black', 'white', 'pink', 'orange', 'darkgreen'];
+	var i = 0; // começa com azul
+	
+
+	function mudaCor()
+	{
+		
+		i = i + 1;
+		
+		if(i >= cores.length)
+		{
+			i = 0; 
+		}
+		
+		return false; //não exibe o menu padrão canvas
+		
+	}
+
+	tela.oncontextmenu = mudaCor;
+</script>
